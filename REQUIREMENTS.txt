@@ -1,0 +1,16 @@
+image:
+BMP
+EPS
+GIF
+HDR/EXR
+ICO
+JPG
+PNG
+SVG
+TGA
+TIFF
+WBMP
+WEBP
+
+to activate the virtual env:
+envname\Scripts\activate.bat
