@@ -13,4 +13,4 @@ WBMP
 WEBP
 
 to activate the virtual env:
-envname\Scripts\activate.bat
+convertron\Scripts\activate.bat

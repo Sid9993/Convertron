@@ -1,9 +1,9 @@
 from PIL import Image
 import os
-
-image1=Image.open('sapmle.jpg')
-image1.show()
-image1.save('edit.png')
+def convert(extension):
+    image1=Image.open('sapmle.jpg')
+    #image1.show()
+    image1.save('sample.{ext}'.format(ext=extension))
 
 
 #for converting more than one file to different extension
@@ -15,3 +15,6 @@ def morethanone():
             i=Image.open(f)
             fn,text=os.path.splitext(f)
             i.save('pngs/{}.png'.format(fn))    #saves the image in the png format
+
+convert('png')
+convert('gif')
