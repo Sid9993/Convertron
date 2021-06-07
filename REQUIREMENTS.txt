@@ -14,3 +14,7 @@ WEBP
 
 to activate the virtual env:
 convertron\Scripts\activate.bat
+
+inorder to run the flask:
+set FLASK_APP=app.py
+flask run
