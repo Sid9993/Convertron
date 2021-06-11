@@ -2,6 +2,10 @@ from flask import Flask,request,render_template,flash,redirect
 import os
 #to give secure filename
 from werkzeug.utils import secure_filename
+#tesseract import
+import pytesseract as tess
+tess.pytesseract.tesseract_cmd=r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+from PIL import Image
 
 
 app = Flask(__name__)
@@ -21,6 +25,14 @@ def allowed_ext(filename):
          return True
       else:
          return False
+
+### TEXT EXTRACTION USING TESSERACT ###
+def image_ocr(image_path, output_txt_file_name):
+  image_text = tess.image_to_string(image_path, lang='eng+ces', config='--psm 1')
+  with open(output_txt_file_name, 'w+', encoding='utf-8') as f:
+    f.write(image_text)
+
+########################################
 
 @app.route('/')
 def hello_world():
