@@ -1,4 +1,4 @@
-from flask import Flask,request,render_template,flash,redirect
+from flask import Flask,request,render_template,flash,redirect,send_from_directory,abort
 import os
 #to give secure filename
 from werkzeug.utils import secure_filename
@@ -49,6 +49,8 @@ def about():
 @app.route('/convert')
 def convert():
    return render_template('convert.html')
+
+@app.route('/download-image')
    
 #upload function need completion
 @app.route('/upload-image',methods=['GET','POST'])
@@ -69,6 +71,7 @@ def upload_file():
             filename=secure_filename(image.filename)
             #saving the image
             image.save(os.path.join(app.config["IMAGE_UPLOADS"],filename))
+            image_ocr
             
          return redirect(request.url)
    #if 'file1' not in request.files:
