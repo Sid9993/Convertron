@@ -131,13 +131,26 @@ https://templatemo.com/tm-545-finance-business
                     <p>Drag your files here or click in this area.</p>
                     <button type="submit">Upload</button>
                   </form>
-                  </div>
+                </div>
               </article>
               <article id='tabs-4'>
                 <img src="../static/assets/images/single_service_04.jpg" alt="">
                 <h4>Merge PDF's</h4>
                 <p>Integer vehicula sapien quis dolor efficitur, eget molestie eros tempus. Curabitur sollicitudin, tortor at suscipit volutpat, nisi arcu aliquet dui, vitae semper sem turpis quis libero. Quisque vulputate lacinia nisl ac lobortis. Ut ultricies maximus turpis, in sollicitudin ligula posuere vel. 
                 <br><br>Donec finibus maximus neque, vitae egestas quam imperdiet nec. Proin nec mauris eu tortor consectetur tristique. Etiam suscipit ante a odio consequat, in ornare lacus suscipit. Cras ac libero massa. Quisque rhoncus velit feugiat vulputate mollis. Donec nisl eros, malesuada sed nisi id, condimentum condimentum quam.</p>
+                <div>
+                <!--<  <form action="/upload-pdf" method="POST" enctype="multipart/form-data">
+                    <input type="file" id="test" name="test" accept=".pdf" multiple/>
+                    <p>Drag your files here or click in this area.</p>
+                    <button type="submit">Upload</button>
+                  </form>-->
+                  <form action="/upload-pdf" method="POST" enctype="multipart/form-data">
+                    <input type="file" id="test" name="test" accept=".pdf" multiple/>
+                    <p>DRAG YOUR FILES HERE</p>
+                    <button type="submit">Upload</button>
+                </form>
+                </div>
+
               </article>
             </section>
           </div>

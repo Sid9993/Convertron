@@ -1,4 +1,4 @@
-from flask import Flask,request,render_template,flash,redirect,send_from_directory,abort
+from flask import Flask,session,request,render_template,flash,redirect,send_from_directory,abort,send_file
 import os
 #to give secure filename
 from werkzeug.utils import secure_filename
@@ -6,10 +6,19 @@ from werkzeug.utils import secure_filename
 import pytesseract as tess
 tess.pytesseract.tesseract_cmd=r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 from PIL import Image
+from PyPDF2 import PdfFileMerger
+from flask_session import Session
 
+SESSION_TYPE="memcache"
 
 app = Flask(__name__)
+app.secret_key = 'super secret key'
+sess=Session()
 
+#upload folder details
+UPLOAD_FOLDER = 'static/uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#app.config['SESSION_TYPE'] = 'filesystem'
 
 #FILE CONFIG INSTRUCTIONS#
 #providing a path to where we want to temperorily save the image
@@ -85,6 +94,36 @@ def uploads_file():
       f = request.files['file']
       #f.save(secure_filename(f.filename))
       return 'file uploaded successfully'
+
+
+#portion to merge the pdf
+@app.route('/upload-pdf', methods=['GET', 'POST'])
+def upload_file_pdf():
+    if request.method=='POST':
+        if 'test' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        
+        files = request.files.getlist('test')
+        merger = PdfFileMerger()
+        for file in files:
+            if file.filename != '':
+                merger.append(file)
+        merger.write("final.pdf")
+        merger.close
+        return send_file("final.pdf")
+
+        #uploaded_file = request.files['test']
+        #if uploaded_file.filename != '':
+
+            #uploaded_file.save(uploaded_file.filename)
+         #   uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'], uploaded_file.filename))
+            #return send_file()
+    return render_template('convert.html')
 		
 if __name__ == '__main__':
+   
+   app.config['SESSION_TYPE'] = 'filesystem'
+
+   sess.init_app(app)
    app.run(debug = True)
