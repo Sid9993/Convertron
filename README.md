@@ -9,6 +9,14 @@
         HTML
         CSS
         
+        
+# For running the project
+    
+    1.Clone the project using git.
+    2.Activate the virtual environment.
+    3.Install all the neccessary packages from the requirements.txt file.
+    
+    
 # Installing tesseract
 first, install using pip install pytesseract
 Install the executable:
