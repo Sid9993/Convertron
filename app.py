@@ -105,10 +105,13 @@ def upload_file_pdf():
             return redirect(request.url)
         
         files = request.files.getlist('test')
-        merger = PdfFileMerger()
+        merger = PdfFileMerger(strict=False)
         for file in files:
+           try:
             if file.filename != '':
                 merger.append(file)
+           except:
+              pass
         merger.write("final.pdf")
         merger.close
         return send_file("final.pdf")

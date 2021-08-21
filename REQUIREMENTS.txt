@@ -29,3 +29,7 @@ program showing name and the type of the file
 
 
 the file upload code addition is done foe picture format section even though the file download functionality is left behind.
+
+export FLASK_APP=myapp
+export FLASK_ENV=development
+flask run
